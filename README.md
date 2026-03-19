@@ -22,7 +22,7 @@ Actualmente, el proceso manual genera problemas como búsquedas lentas, control 
 ### Release 1 - Backend y Frontend Base
 - **Objetivo:** API REST completa y frontend CRUD.
 - **Sprints:**
-  - **Sprint 1 (Mar 16 - Mar 29):** Infraestructura, Docker, Prisma, CRUD de Libro/Autor/Categoría.  
+  - **Sprint 1 (Mar 18 - Mar 29):** Infraestructura, Docker, Prisma, CRUD de Libro/Autor/Categoría.  
   - **Sprint 2 (Mar 30 - Abr 10):** Gestión de UsuarioLector y Ejemplar con validaciones.  
   - **Sprint 3 (Abr 13 - Abr 17):** Préstamos, devoluciones y frontend base.  
 
