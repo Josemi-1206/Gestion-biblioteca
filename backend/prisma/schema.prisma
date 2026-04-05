@@ -1,0 +1,91 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Libro {
+  id          Int          @id @default(autoincrement())
+  isbn        String       @unique
+  titulo      String
+  editorial   String
+  anio        Int
+  categoriaId Int
+  categoria   Categoria    @relation(fields: [categoriaId], references: [id])
+  ejemplares  Ejemplar[]
+  autores     LibroAutor[]
+  reservas    Reserva[]
+}
+
+model Autor {
+  id          Int          @id @default(autoincrement())
+  nombre      String
+  biografia   String?
+  nacionalidad String?
+  libros      LibroAutor[]
+}
+
+model LibroAutor {
+  libroId Int
+  autorId Int
+  libro   Libro @relation(fields: [libroId], references: [id])
+  autor   Autor @relation(fields: [autorId], references: [id])
+
+  @@id([libroId, autorId])
+}
+
+model Categoria {
+  id     Int     @id @default(autoincrement())
+  nombre String  @unique
+  libros Libro[]
+}
+
+model Ejemplar {
+  id       Int        @id @default(autoincrement())
+  libroId  Int
+  libro    Libro      @relation(fields: [libroId], references: [id])
+  estado   String     @default("disponible")
+  prestamos Prestamo[]
+}
+
+model UsuarioLector {
+  id              Int        @id @default(autoincrement())
+  nombre          String
+  tipo            String
+  limitePrestamos Int        @default(3)
+  prestamos       Prestamo[]
+  reservas        Reserva[]
+}
+
+model Prestamo {
+  id                    Int           @id @default(autoincrement())
+  usuarioId             Int
+  usuario               UsuarioLector @relation(fields: [usuarioId], references: [id])
+  ejemplarId            Int
+  ejemplar              Ejemplar      @relation(fields: [ejemplarId], references: [id])
+  fechaPrestamo         DateTime      @default(now())
+  fechaDevolucionEsperada DateTime
+  fechaDevolucionReal   DateTime?
+  multa                 Multa?
+}
+
+model Multa {
+  id           Int      @id @default(autoincrement())
+  prestamoId   Int      @unique
+  prestamo     Prestamo @relation(fields: [prestamoId], references: [id])
+  valor        Float
+  diasRetraso  Int
+  estado       String   @default("pendiente")
+}
+
+model Reserva {
+  id           Int           @id @default(autoincrement())
+  usuarioId    Int
+  usuario      UsuarioLector @relation(fields: [usuarioId], references: [id])
+  libroId      Int
+  libro        Libro         @relation(fields: [libroId], references: [id])
+  fechaReserva DateTime      @default(now())
+  estado       String        @default("activa")
+}
