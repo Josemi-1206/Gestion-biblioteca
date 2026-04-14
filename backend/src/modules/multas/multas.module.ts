@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
-import { MultasController } from './multas.controller';
-import { MultasService } from './multas.service';
+import { MultasController } from './controller/multas.controller';
+import { MultasService } from './service/multas.service';
+import { MultasRepository } from './repository/multas.repository';
 
 @Module({
   controllers: [MultasController],
-  providers: [MultasService]
+  providers: [MultasService, MultasRepository],
 })
 export class MultasModule {}
