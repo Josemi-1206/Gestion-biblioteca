@@ -6,6 +6,16 @@ datasource db {
   provider = "postgresql"
 }
 
+enum TipoUsuario {
+  ESTUDIANTE
+  DOCENTE
+}
+
+enum EstadoEjemplar {
+  DISPONIBLE
+  PRESTADO
+}
+
 model Libro {
   id          Int          @id @default(autoincrement())
   isbn        String       @unique
@@ -46,8 +56,8 @@ model Ejemplar {
   id       Int        @id @default(autoincrement())
   libroId  Int
   libro    Libro      @relation(fields: [libroId], references: [id])
-  estado   String     @default("disponible")
   prestamos Prestamo[]
+  estado   EstadoEjemplar @default(DISPONIBLE)
 }
 
 model UsuarioLector {
@@ -88,4 +98,11 @@ model Reserva {
   libro        Libro         @relation(fields: [libroId], references: [id])
   fechaReserva DateTime      @default(now())
   estado       String        @default("activa")
+}
+
+
+model Usuario {
+  id     Int    @id @default(autoincrement())
+  nombre String
+  tipo   TipoUsuario
 }
