@@ -1,38 +1,33 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { ReservasRepository } from '../repository/reservas.repository';
+import { PrismaService } from '../../../prisma/prisma.service';
 import { CreateReservaDto } from '../dto/create-reserva.dto';
 import { UpdateReservaDto } from '../dto/update-reserva.dto';
 
 @Injectable()
 export class ReservasService {
-  constructor(private readonly reservasRepository: ReservasRepository) {}
+  constructor(private readonly prisma: PrismaService) {}
 
   findAll() {
-    return this.reservasRepository.findAll();
+    return this.prisma.reserva.findMany({ include: { usuario: true, libro: true } });
   }
 
   async findOne(id: number) {
-    const reserva = await this.reservasRepository.findOne(id);
-    if (!reserva) throw new NotFoundException(`Reserva con ID ${id} no encontrada`);
+    const reserva = await this.prisma.reserva.findUnique({ where: { id }, include: { usuario: true, libro: true } });
+    if (!reserva) throw new NotFoundException(`Reserva #${id} no encontrada`);
     return reserva;
   }
 
-  async create(dto: CreateReservaDto) {
-    try {
-      return await this.reservasRepository.create(dto);
-    } catch (error: any) {
-      if (error.code === 'P2003') throw new NotFoundException('El usuario o libro referenciado no existe');
-      throw error;
-    }
+  create(dto: CreateReservaDto) {
+    return this.prisma.reserva.create({ data: dto });
   }
 
   async update(id: number, dto: UpdateReservaDto) {
     await this.findOne(id);
-    return this.reservasRepository.update(id, dto);
+    return this.prisma.reserva.update({ where: { id }, data: dto });
   }
 
   async remove(id: number) {
     await this.findOne(id);
-    return this.reservasRepository.remove(id);
+    return this.prisma.reserva.delete({ where: { id } });
   }
 }

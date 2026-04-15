@@ -1,38 +1,33 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { EjemplaresRepository } from '../repository/ejemplares.repository';
+import { PrismaService } from '../../../prisma/prisma.service';
 import { CreateEjemplarDto } from '../dto/create-ejemplar.dto';
 import { UpdateEjemplarDto } from '../dto/update-ejemplar.dto';
 
 @Injectable()
 export class EjemplaresService {
-  constructor(private readonly ejemplaresRepository: EjemplaresRepository) {}
+  constructor(private readonly prisma: PrismaService) {}
 
   findAll() {
-    return this.ejemplaresRepository.findAll();
+    return this.prisma.ejemplar.findMany({ include: { libro: true } });
   }
 
   async findOne(id: number) {
-    const ejemplar = await this.ejemplaresRepository.findOne(id);
-    if (!ejemplar) throw new NotFoundException(`Ejemplar con ID ${id} no encontrado`);
+    const ejemplar = await this.prisma.ejemplar.findUnique({ where: { id }, include: { libro: true } });
+    if (!ejemplar) throw new NotFoundException(`Ejemplar #${id} no encontrado`);
     return ejemplar;
   }
 
-  async create(dto: CreateEjemplarDto) {
-    try {
-      return await this.ejemplaresRepository.create(dto);
-    } catch (error: any) {
-      if (error.code === 'P2003') throw new NotFoundException('El libro referenciado no existe');
-      throw error;
-    }
+  create(dto: CreateEjemplarDto) {
+    return this.prisma.ejemplar.create({ data: dto });
   }
 
   async update(id: number, dto: UpdateEjemplarDto) {
     await this.findOne(id);
-    return this.ejemplaresRepository.update(id, dto);
+    return this.prisma.ejemplar.update({ where: { id }, data: dto });
   }
 
   async remove(id: number) {
     await this.findOne(id);
-    return this.ejemplaresRepository.remove(id);
+    return this.prisma.ejemplar.delete({ where: { id } });
   }
 }

@@ -1,33 +1,33 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { UsuariosRepository } from '../repository/usuarios.repository';
+import { PrismaService } from '../../../prisma/prisma.service';
 import { CreateUsuarioDto } from '../dto/create-usuario.dto';
 import { UpdateUsuarioDto } from '../dto/update-usuario.dto';
 
 @Injectable()
 export class UsuariosService {
-  constructor(private readonly usuariosRepository: UsuariosRepository) {}
+  constructor(private readonly prisma: PrismaService) {}
 
   findAll() {
-    return this.usuariosRepository.findAll();
+    return this.prisma.usuarioLector.findMany();
   }
 
   async findOne(id: number) {
-    const usuario = await this.usuariosRepository.findOne(id);
-    if (!usuario) throw new NotFoundException(`Usuario con ID ${id} no encontrado`);
+    const usuario = await this.prisma.usuarioLector.findUnique({ where: { id } });
+    if (!usuario) throw new NotFoundException(`Usuario #${id} no encontrado`);
     return usuario;
   }
 
-  async create(dto: CreateUsuarioDto) {
-    return this.usuariosRepository.create(dto);
+  create(dto: CreateUsuarioDto) {
+    return this.prisma.usuarioLector.create({ data: dto });
   }
 
   async update(id: number, dto: UpdateUsuarioDto) {
     await this.findOne(id);
-    return this.usuariosRepository.update(id, dto);
+    return this.prisma.usuarioLector.update({ where: { id }, data: dto });
   }
 
   async remove(id: number) {
     await this.findOne(id);
-    return this.usuariosRepository.remove(id);
+    return this.prisma.usuarioLector.delete({ where: { id } });
   }
 }

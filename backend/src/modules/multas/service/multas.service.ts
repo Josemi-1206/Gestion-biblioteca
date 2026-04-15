@@ -1,40 +1,33 @@
-import { Injectable, NotFoundException, ConflictException } from '@nestjs/common';
-import { MultasRepository } from '../repository/multas.repository';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { PrismaService } from '../../../prisma/prisma.service';
 import { CreateMultaDto } from '../dto/create-multa.dto';
 import { UpdateMultaDto } from '../dto/update-multa.dto';
 
 @Injectable()
 export class MultasService {
-  constructor(private readonly multasRepository: MultasRepository) {}
+  constructor(private readonly prisma: PrismaService) {}
 
   findAll() {
-    return this.multasRepository.findAll();
+    return this.prisma.multa.findMany({ include: { prestamo: true } });
   }
 
   async findOne(id: number) {
-    const multa = await this.multasRepository.findOne(id);
-    if (!multa) throw new NotFoundException(`Multa con ID ${id} no encontrada`);
+    const multa = await this.prisma.multa.findUnique({ where: { id }, include: { prestamo: true } });
+    if (!multa) throw new NotFoundException(`Multa #${id} no encontrada`);
     return multa;
   }
 
-  async create(dto: CreateMultaDto) {
-    const existing = await this.multasRepository.findByPrestamo(dto.prestamoId);
-    if (existing) throw new ConflictException('Ya existe una multa para este préstamo');
-    try {
-      return await this.multasRepository.create(dto);
-    } catch (error: any) {
-      if (error.code === 'P2003') throw new NotFoundException('El préstamo referenciado no existe');
-      throw error;
-    }
+  create(dto: CreateMultaDto) {
+    return this.prisma.multa.create({ data: dto });
   }
 
   async update(id: number, dto: UpdateMultaDto) {
     await this.findOne(id);
-    return this.multasRepository.update(id, dto);
+    return this.prisma.multa.update({ where: { id }, data: dto });
   }
 
   async remove(id: number) {
     await this.findOne(id);
-    return this.multasRepository.remove(id);
+    return this.prisma.multa.delete({ where: { id } });
   }
 }
