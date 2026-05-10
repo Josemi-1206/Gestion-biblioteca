@@ -1,33 +1,29 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { PrismaService } from '../../../prisma/prisma.service';
+import { EjemplaresRepository } from '../repository/ejemplares.repository';
 import { CreateEjemplarDto } from '../dto/create-ejemplar.dto';
 import { UpdateEjemplarDto } from '../dto/update-ejemplar.dto';
 
 @Injectable()
 export class EjemplaresService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly repo: EjemplaresRepository) {}
 
-  findAll() {
-    return this.prisma.ejemplar.findMany({ include: { libro: true } });
-  }
+  findAll() { return this.repo.findAll(); }
 
   async findOne(id: number) {
-    const ejemplar = await this.prisma.ejemplar.findUnique({ where: { id }, include: { libro: true } });
-    if (!ejemplar) throw new NotFoundException(`Ejemplar #${id} no encontrado`);
-    return ejemplar;
+    const e = await this.repo.findOne(id);
+    if (!e) throw new NotFoundException(`Ejemplar #${id} no encontrado`);
+    return e;
   }
 
-  create(dto: CreateEjemplarDto) {
-    return this.prisma.ejemplar.create({ data: dto });
-  }
+  create(dto: CreateEjemplarDto) { return this.repo.create(dto); }
 
   async update(id: number, dto: UpdateEjemplarDto) {
     await this.findOne(id);
-    return this.prisma.ejemplar.update({ where: { id }, data: dto });
+    return this.repo.update(id, dto);
   }
 
   async remove(id: number) {
     await this.findOne(id);
-    return this.prisma.ejemplar.delete({ where: { id } });
+    return this.repo.remove(id);
   }
 }

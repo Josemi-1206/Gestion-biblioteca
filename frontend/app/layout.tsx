@@ -2,16 +2,14 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Sistema de Gestión de Biblioteca Digital',
-  description: 'Administración de biblioteca — CORHUILA 2026A',
+  title: 'Biblioteca Digital - CORHUILA',
+  description: 'Sistema de Gestión de Biblioteca Digital',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
-      <body className="bg-gray-50 text-gray-900 antialiased">
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

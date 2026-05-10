@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../../prisma/prisma.service';
 import { CreateEjemplarDto } from '../dto/create-ejemplar.dto';
 import { UpdateEjemplarDto } from '../dto/update-ejemplar.dto';
+import { EstadoEjemplar } from '@prisma/client';
 
 @Injectable()
 export class EjemplaresRepository {
@@ -23,7 +24,10 @@ export class EjemplaresRepository {
 
   create(dto: CreateEjemplarDto) {
     return this.prisma.ejemplar.create({
-      data: dto,
+      data: {
+        libroId: dto.libroId,
+        estado: (dto.estado as EstadoEjemplar) ?? EstadoEjemplar.DISPONIBLE,
+      },
       include: { libro: true },
     });
   }
@@ -31,7 +35,10 @@ export class EjemplaresRepository {
   update(id: number, dto: UpdateEjemplarDto) {
     return this.prisma.ejemplar.update({
       where: { id },
-      data: dto,
+      data: {
+        ...(dto.libroId !== undefined && { libroId: dto.libroId }),
+        ...(dto.estado !== undefined && { estado: dto.estado as EstadoEjemplar }),
+      },
       include: { libro: true },
     });
   }

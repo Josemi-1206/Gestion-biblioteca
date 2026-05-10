@@ -1,7 +1,7 @@
 services:
   db:
     image: postgres:16-alpine
-    container_name: gestion_biblioteca_db
+    container_name: gestion_biblioteca_db3
     restart: unless-stopped
     env_file:
       - .env
@@ -21,9 +21,9 @@ services:
 
   backend:
     build:
-      context: ./backend            
+      context: ./backend
       dockerfile: Dockerfile
-    container_name: gestion_biblioteca_backend
+    container_name: gestion_biblioteca_backend2
     restart: unless-stopped
     env_file:
       - .env
@@ -31,33 +31,23 @@ services:
       DATABASE_URL: postgresql://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_NAME}
       PORT: 3001
     ports:
-      - '3001:3001'                   
+      - '3001:3001'
     depends_on:
       db:
-        condition: service_healthy    
-    volumes:
-      - ./backend:/app                
-      - /app/node_modules             
+        condition: service_healthy
 
-  
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: gestion_biblioteca_frontend
+    container_name: gestion_biblioteca_frontend2
     restart: unless-stopped
     environment:
       NEXT_PUBLIC_API_URL: http://localhost:3001
     ports:
-      - '3000:3000'                  
+      - '3000:3000'
     depends_on:
-      - backend                       
-    volumes:
-      - ./frontend:/app              
-      - /app/node_modules
-      - /app/.next                   
-
+      - backend
 
 volumes:
   postgres_data:
-

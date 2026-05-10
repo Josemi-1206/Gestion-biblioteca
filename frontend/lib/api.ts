@@ -1,37 +1,54 @@
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
-export async function apiGet<T>(path: string): Promise<T> {
-  const res = await fetch(`${BASE_URL}/api/v1${path}`);
-  if (!res.ok) throw new Error(`GET ${path} failed: ${res.status}`);
-  const json = await res.json();
-  return json.data as T;
+async function request<T>(path: string, options?: RequestInit): Promise<T> {
+  const res = await fetch(`${BASE_URL}/api/v1${path}`, {
+    ...options,
+    headers: {
+      'Content-Type': 'application/json',
+      ...(options?.headers || {}),
+    },
+  });
+
+  if (!res.ok) {
+    let message = `Error ${res.status}`;
+    try {
+      const body = await res.json();
+      message = body.message || body.error || message;
+    } catch {}
+    throw new Error(message);
+  }
+
+  // Handle 204 No Content
+  if (res.status === 204) return undefined as T;
+
+  return res.json();
 }
 
-export async function apiPost<T>(path: string, body: unknown): Promise<T> {
-  const res = await fetch(`${BASE_URL}/api/v1${path}`, {
+export function apiGet<T>(path: string): Promise<T> {
+  return request<T>(path, { method: 'GET' });
+}
+
+export function apiPost<T>(path: string, data: unknown): Promise<T> {
+  return request<T>(path, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
+    body: JSON.stringify(data),
   });
-  if (!res.ok) throw new Error(`POST ${path} failed: ${res.status}`);
-  const json = await res.json();
-  return json.data as T;
 }
 
-export async function apiPut<T>(path: string, body: unknown): Promise<T> {
-  const res = await fetch(`${BASE_URL}/api/v1${path}`, {
+export function apiPut<T>(path: string, data: unknown): Promise<T> {
+  return request<T>(path, {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
+    body: JSON.stringify(data),
   });
-  if (!res.ok) throw new Error(`PUT ${path} failed: ${res.status}`);
-  const json = await res.json();
-  return json.data as T;
 }
 
-export async function apiDelete<T>(path: string): Promise<T> {
-  const res = await fetch(`${BASE_URL}/api/v1${path}`, { method: 'DELETE' });
-  if (!res.ok) throw new Error(`DELETE ${path} failed: ${res.status}`);
-  const json = await res.json();
-  return json.data as T;
+export function apiPatch<T>(path: string, data: unknown): Promise<T> {
+  return request<T>(path, {
+    method: 'PATCH',
+    body: JSON.stringify(data),
+  });
+}
+
+export function apiDelete<T>(path: string): Promise<T> {
+  return request<T>(path, { method: 'DELETE' });
 }

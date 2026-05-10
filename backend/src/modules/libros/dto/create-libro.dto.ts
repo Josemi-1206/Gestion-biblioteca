@@ -1,7 +1,8 @@
-import { IsString, IsInt, IsISBN, IsNotEmpty } from 'class-validator';
+import { IsString, IsInt, IsNotEmpty, IsOptional, IsArray } from 'class-validator';
 
 export class CreateLibroDto {
-  @IsISBN()
+  @IsString()
+  @IsNotEmpty()
   isbn: string;
 
   @IsString()
@@ -17,4 +18,7 @@ export class CreateLibroDto {
   @IsInt()
   categoriaId: number;
 
+  @IsArray()
+  @IsOptional()
+  autoresIds?: number[];
 }
