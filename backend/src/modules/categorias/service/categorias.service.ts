@@ -1,33 +1,33 @@
-import { Injectable, NotFoundException, ConflictException } from '@nestjs/common';
-import { CategoriasRepository } from '../repository/categorias.repository';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { PrismaService } from '../../../prisma/prisma.service';
 import { CreateCategoriaDto } from '../dto/create-categoria.dto';
 import { UpdateCategoriaDto } from '../dto/update-categoria.dto';
 
 @Injectable()
 export class CategoriasService {
-  constructor(private readonly repo: CategoriasRepository) {}
+  constructor(private readonly prisma: PrismaService) {}
 
-  findAll() { return this.repo.findAll(); }
+  findAll() {
+    return this.prisma.categoria.findMany();
+  }
 
   async findOne(id: number) {
-    const categoria = await this.repo.findOne(id);
+    const categoria = await this.prisma.categoria.findUnique({ where: { id } });
     if (!categoria) throw new NotFoundException(`Categoría #${id} no encontrada`);
     return categoria;
   }
 
-  async create(dto: CreateCategoriaDto) {
-    const existe = await this.repo.findByNombre(dto.nombre);
-    if (existe) throw new ConflictException(`Ya existe una categoría con el nombre: ${dto.nombre}`);
-    return this.repo.create(dto);
+  create(dto: CreateCategoriaDto) {
+    return this.prisma.categoria.create({ data: dto });
   }
 
   async update(id: number, dto: UpdateCategoriaDto) {
     await this.findOne(id);
-    return this.repo.update(id, dto);
+    return this.prisma.categoria.update({ where: { id }, data: dto });
   }
 
   async remove(id: number) {
     await this.findOne(id);
-    return this.repo.remove(id);
+    return this.prisma.categoria.delete({ where: { id } });
   }
 }
