@@ -1,0 +1,293 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 1890 1600 1148" font-family="Segoe UI, Arial, sans-serif">
+<defs>
+    <style>
+      .title-main   { font-size:28px; font-weight:700; fill:#1e293b; }
+      .title-sub    { font-size:13px; fill:#64748b; }
+      .diagram-title{ font-size:20px; font-weight:700; fill:#1e293b; }
+      .diagram-sub  { font-size:11px; fill:#64748b; }
+      .box-title    { font-size:13px; font-weight:700; }
+      .box-tag      { font-size:10px; font-style:italic; }
+      .box-desc     { font-size:10.5px; }
+      .arrow-label  { font-size:10px; fill:#475569; }
+      .section-bg   { fill:#f8fafc; rx:16; }
+      .legend-text  { font-size:11px; fill:#475569; }
+    </style>
+
+    <!-- Arrowhead markers -->
+    <marker id="arr-dark" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#475569"/>
+    </marker>
+    <marker id="arr-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6"/>
+    </marker>
+    <marker id="arr-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#10b981"/>
+    </marker>
+    <marker id="arr-purple" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#8b5cf6"/>
+    </marker>
+    <marker id="arr-orange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#f59e0b"/>
+    </marker>
+
+    <!-- Drop shadow -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#00000018"/>
+    </filter>
+    <filter id="shadow-sm" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#00000012"/>
+    </filter>
+  </defs>
+<!-- Background -->
+<rect x="0" y="1890" width="1600" height="1148" fill="#f1f5f9"/>
+<!-- Header -->
+<rect x="0" y="1890" width="1600" height="60" fill="#064e3b"/>
+<text x="800" y="1914" text-anchor="middle" font-size="18" font-weight="700" fill="white">Nivel 3 — Diagrama de Componentes del Backend (NestJS)</text>
+<text x="800" y="1932" text-anchor="middle" font-size="10" fill="#94a3b8">[Component Diagram] Módulos internos del API NestJS · C4 Model</text>
+<text x="800" y="1946" text-anchor="middle" font-size="9" fill="#64748b">José Miguel Aya Peralta · Andrés Felipe Calle González · Programación Web CORHUILA 2026A</text>
+<!-- Content (original coordinates preserved) -->
+  <!-- ║  NIVEL 3 — DIAGRAMA DE COMPONENTES (BACKEND)            ║ -->
+  <!-- ╚══════════════════════════════════════════════════════════╝ -->
+
+  <rect x="40" y="1960" width="1520" height="1040" rx="16" fill="white" filter="url(#shadow)"/>
+  <rect x="40" y="1960" width="1520" height="46" rx="16" fill="#064e3b"/>
+  <rect x="40" y="1990" width="1520" height="16" fill="#064e3b"/>
+  <text x="800" y="1988" text-anchor="middle" fill="white" font-size="16" font-weight="700">Nivel 3 — Diagrama de Componentes del Backend (NestJS)</text>
+  <text x="800" y="2008" text-anchor="middle" fill="#a7f3d0" font-size="10">[Component Diagram] Módulos internos del API NestJS y sus responsabilidades</text>
+
+  <!-- AppModule boundary -->
+  <rect x="80" y="2028" width="1440" height="940" rx="10" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="8,4"/>
+  <text x="800" y="2020" text-anchor="middle" fill="#94a3b8" font-size="11" font-style="italic">AppModule — NestJS Application [Boundary]</text>
+
+  <!-- Common Infrastructure row -->
+  <rect x="100" y="2042" width="1400" height="70" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+  <text x="800" y="2060" text-anchor="middle" fill="#065f46" font-size="11" font-weight="700">Infraestructura Global</text>
+  <!-- Infra boxes -->
+  <rect x="120" y="2066" width="200" height="36" rx="6" fill="#065f46"/>
+  <text x="220" y="2081" text-anchor="middle" fill="white" font-size="10" font-weight="600">PrismaModule</text>
+  <text x="220" y="2095" text-anchor="middle" fill="#a7f3d0" font-size="8.5">@Global · PrismaService</text>
+
+  <rect x="336" y="2066" width="200" height="36" rx="6" fill="#065f46"/>
+  <text x="436" y="2081" text-anchor="middle" fill="white" font-size="10" font-weight="600">HttpExceptionFilter</text>
+  <text x="436" y="2095" text-anchor="middle" fill="#a7f3d0" font-size="8.5">Manejo global de errores HTTP</text>
+
+  <rect x="552" y="2066" width="200" height="36" rx="6" fill="#065f46"/>
+  <text x="652" y="2081" text-anchor="middle" fill="white" font-size="10" font-weight="600">ResponseInterceptor</text>
+  <text x="652" y="2095" text-anchor="middle" fill="#a7f3d0" font-size="8.5">Formato estándar { statusCode, data }</text>
+
+  <rect x="768" y="2066" width="200" height="36" rx="6" fill="#065f46"/>
+  <text x="868" y="2081" text-anchor="middle" fill="white" font-size="10" font-weight="600">ValidationPipe</text>
+  <text x="868" y="2095" text-anchor="middle" fill="#a7f3d0" font-size="8.5">class-validator · DTOs · whitelist</text>
+
+  <rect x="984" y="2066" width="200" height="36" rx="6" fill="#065f46"/>
+  <text x="1084" y="2081" text-anchor="middle" fill="white" font-size="10" font-weight="600">CORS + Prefijo /api/v1</text>
+  <text x="1084" y="2095" text-anchor="middle" fill="#a7f3d0" font-size="8.5">Seguridad y versionado</text>
+
+  <!-- 8 MODULES arranged in 4 columns x 2 rows -->
+  <!-- Module width=320, col gaps: 100, 430, 760, 1090 -->
+
+  <!-- === MÓDULO LIBROS === -->
+  <rect x="100" y="2135" width="310" height="240" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5" filter="url(#shadow-sm)"/>
+  <rect x="100" y="2135" width="310" height="30" rx="8" fill="#1d4ed8"/>
+  <rect x="100" y="2150" width="310" height="15" fill="#1d4ed8"/>
+  <text x="255" y="2155" text-anchor="middle" fill="white" font-size="11" font-weight="700">📚 LibrosModule</text>
+  <!-- Controller -->
+  <rect x="118" y="2174" width="274" height="42" rx="5" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
+  <text x="255" y="2190" text-anchor="middle" fill="#1e3a8a" font-size="10" font-weight="700">LibrosController</text>
+  <text x="255" y="2203" text-anchor="middle" fill="#1e40af" font-size="8.5">GET / POST / PUT / DELETE /libros</text>
+  <text x="255" y="2214" text-anchor="middle" fill="#1e40af" font-size="8.5">+ ISBN único validation</text>
+  <!-- Service -->
+  <rect x="118" y="2222" width="274" height="52" rx="5" fill="#bfdbfe" stroke="#93c5fd" stroke-width="1"/>
+  <text x="255" y="2238" text-anchor="middle" fill="#1e3a8a" font-size="10" font-weight="700">LibrosService</text>
+  <text x="255" y="2252" text-anchor="middle" fill="#1e40af" font-size="8.5">Valida ISBN único (ConflictException)</text>
+  <text x="255" y="2264" text-anchor="middle" fill="#1e40af" font-size="8.5">Gestiona autoresIds[] (LibroAutor)</text>
+  <text x="255" y="2276" text-anchor="middle" fill="#1e40af" font-size="8.5">Include: categoria, autores, ejemplares</text>
+  <!-- Repository -->
+  <rect x="118" y="2280" width="274" height="32" rx="5" fill="#93c5fd" stroke="#60a5fa" stroke-width="1"/>
+  <text x="255" y="2296" text-anchor="middle" fill="#1e3a8a" font-size="10" font-weight="700">LibrosRepository</text>
+  <text x="255" y="2308" text-anchor="middle" fill="#1e3a8a" font-size="8.5">CRUD Prisma · findMany/findUnique/create</text>
+  <!-- DTO -->
+  <rect x="118" y="2318" width="130" height="22" rx="4" fill="#dbeafe"/>
+  <text x="183" y="2333" text-anchor="middle" fill="#1e3a8a" font-size="8">CreateLibroDto</text>
+  <rect x="262" y="2318" width="130" height="22" rx="4" fill="#dbeafe"/>
+  <text x="327" y="2333" text-anchor="middle" fill="#1e3a8a" font-size="8">UpdateLibroDto</text>
+  <!-- arrows inside -->
+  <line x1="255" y1="2216" x2="255" y2="2220" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arr-blue)"/>
+  <line x1="255" y1="2274" x2="255" y2="2278" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#arr-blue)"/>
+
+  <!-- === MÓDULO AUTORES === -->
+  <rect x="430" y="2135" width="310" height="240" rx="8" fill="#fdf4ff" stroke="#e9d5ff" stroke-width="1.5" filter="url(#shadow-sm)"/>
+  <rect x="430" y="2135" width="310" height="30" rx="8" fill="#7c3aed"/>
+  <rect x="430" y="2150" width="310" height="15" fill="#7c3aed"/>
+  <text x="585" y="2155" text-anchor="middle" fill="white" font-size="11" font-weight="700">✍️ AutoresModule</text>
+  <rect x="448" y="2174" width="274" height="42" rx="5" fill="#f3e8ff" stroke="#d8b4fe" stroke-width="1"/>
+  <text x="585" y="2190" text-anchor="middle" fill="#4c1d95" font-size="10" font-weight="700">AutoresController</text>
+  <text x="585" y="2203" text-anchor="middle" fill="#6d28d9" font-size="8.5">GET / POST / PUT / DELETE /autores</text>
+  <text x="585" y="2214" text-anchor="middle" fill="#6d28d9" font-size="8.5">CRUD completo</text>
+  <rect x="448" y="2222" width="274" height="42" rx="5" fill="#ede9fe" stroke="#d8b4fe" stroke-width="1"/>
+  <text x="585" y="2238" text-anchor="middle" fill="#4c1d95" font-size="10" font-weight="700">AutoresService</text>
+  <text x="585" y="2252" text-anchor="middle" fill="#6d28d9" font-size="8.5">findAll, findOne, create, update, remove</text>
+  <text x="585" y="2264" text-anchor="middle" fill="#6d28d9" font-size="8.5">NotFoundException si no existe</text>
+  <rect x="448" y="2270" width="274" height="32" rx="5" fill="#d8b4fe" stroke="#c084fc" stroke-width="1"/>
+  <text x="585" y="2286" text-anchor="middle" fill="#4c1d95" font-size="10" font-weight="700">AutoresRepository</text>
+  <text x="585" y="2298" text-anchor="middle" fill="#4c1d95" font-size="8.5">findAll(orderBy id) · findOne · create</text>
+  <rect x="448" y="2308" width="130" height="22" rx="4" fill="#f3e8ff"/>
+  <text x="513" y="2323" text-anchor="middle" fill="#4c1d95" font-size="8">CreateAutorDto</text>
+  <rect x="592" y="2308" width="130" height="22" rx="4" fill="#f3e8ff"/>
+  <text x="657" y="2323" text-anchor="middle" fill="#4c1d95" font-size="8">UpdateAutorDto</text>
+  <line x1="585" y1="2216" x2="585" y2="2220" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arr-purple)"/>
+  <line x1="585" y1="2264" x2="585" y2="2268" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arr-purple)"/>
+
+  <!-- === MÓDULO CATEGORÍAS === -->
+  <rect x="760" y="2135" width="310" height="240" rx="8" fill="#fff7ed" stroke="#fed7aa" stroke-width="1.5" filter="url(#shadow-sm)"/>
+  <rect x="760" y="2135" width="310" height="30" rx="8" fill="#c2410c"/>
+  <rect x="760" y="2150" width="310" height="15" fill="#c2410c"/>
+  <text x="915" y="2155" text-anchor="middle" fill="white" font-size="11" font-weight="700">🏷️ CategoriasModule</text>
+  <rect x="778" y="2174" width="274" height="42" rx="5" fill="#ffedd5" stroke="#fdba74" stroke-width="1"/>
+  <text x="915" y="2190" text-anchor="middle" fill="#7c2d12" font-size="10" font-weight="700">CategoriasController</text>
+  <text x="915" y="2203" text-anchor="middle" fill="#9a3412" font-size="8.5">GET / POST / PUT / DELETE /categorias</text>
+  <text x="915" y="2214" text-anchor="middle" fill="#9a3412" font-size="8.5">CRUD completo</text>
+  <rect x="778" y="2222" width="274" height="42" rx="5" fill="#fed7aa" stroke="#fdba74" stroke-width="1"/>
+  <text x="915" y="2238" text-anchor="middle" fill="#7c2d12" font-size="10" font-weight="700">CategoriasService</text>
+  <text x="915" y="2252" text-anchor="middle" fill="#9a3412" font-size="8.5">Valida nombre único (ConflictException)</text>
+  <text x="915" y="2264" text-anchor="middle" fill="#9a3412" font-size="8.5">findByNombre antes de crear</text>
+  <rect x="778" y="2270" width="274" height="32" rx="5" fill="#fdba74" stroke="#fb923c" stroke-width="1"/>
+  <text x="915" y="2286" text-anchor="middle" fill="#7c2d12" font-size="10" font-weight="700">CategoriasRepository</text>
+  <text x="915" y="2298" text-anchor="middle" fill="#7c2d12" font-size="8.5">findAll · findOne · findByNombre · CRUD</text>
+  <rect x="778" y="2308" width="130" height="22" rx="4" fill="#ffedd5"/>
+  <text x="843" y="2323" text-anchor="middle" fill="#7c2d12" font-size="8">CreateCategoriaDto</text>
+  <rect x="922" y="2308" width="130" height="22" rx="4" fill="#ffedd5"/>
+  <text x="987" y="2323" text-anchor="middle" fill="#7c2d12" font-size="8">UpdateCategoriaDto</text>
+  <line x1="915" y1="2216" x2="915" y2="2220" stroke="#c2410c" stroke-width="1.5" marker-end="url(#arr-orange)"/>
+  <line x1="915" y1="2264" x2="915" y2="2268" stroke="#c2410c" stroke-width="1.5" marker-end="url(#arr-orange)"/>
+
+  <!-- === MÓDULO EJEMPLARES === -->
+  <rect x="1090" y="2135" width="310" height="240" rx="8" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5" filter="url(#shadow-sm)"/>
+  <rect x="1090" y="2135" width="310" height="30" rx="8" fill="#15803d"/>
+  <rect x="1090" y="2150" width="310" height="15" fill="#15803d"/>
+  <text x="1245" y="2155" text-anchor="middle" fill="white" font-size="11" font-weight="700">🗂️ EjemplaresModule</text>
+  <rect x="1108" y="2174" width="274" height="42" rx="5" fill="#dcfce7" stroke="#86efac" stroke-width="1"/>
+  <text x="1245" y="2190" text-anchor="middle" fill="#14532d" font-size="10" font-weight="700">EjemplaresController</text>
+  <text x="1245" y="2203" text-anchor="middle" fill="#166534" font-size="8.5">GET / POST / PUT / DELETE /ejemplares</text>
+  <text x="1245" y="2214" text-anchor="middle" fill="#166534" font-size="8.5">CRUD completo</text>
+  <rect x="1108" y="2222" width="274" height="42" rx="5" fill="#bbf7d0" stroke="#86efac" stroke-width="1"/>
+  <text x="1245" y="2238" text-anchor="middle" fill="#14532d" font-size="10" font-weight="700">EjemplaresService</text>
+  <text x="1245" y="2252" text-anchor="middle" fill="#166534" font-size="8.5">Estado: DISPONIBLE / PRESTADO</text>
+  <text x="1245" y="2264" text-anchor="middle" fill="#166534" font-size="8.5">Include: libro (título, ISBN)</text>
+  <rect x="1108" y="2270" width="274" height="32" rx="5" fill="#86efac" stroke="#4ade80" stroke-width="1"/>
+  <text x="1245" y="2286" text-anchor="middle" fill="#14532d" font-size="10" font-weight="700">EjemplaresRepository</text>
+  <text x="1245" y="2298" text-anchor="middle" fill="#14532d" font-size="8.5">findAll · findOne · CRUD con include libro</text>
+  <rect x="1108" y="2308" width="130" height="22" rx="4" fill="#dcfce7"/>
+  <text x="1173" y="2323" text-anchor="middle" fill="#14532d" font-size="8">CreateEjemplarDto</text>
+  <rect x="1252" y="2308" width="130" height="22" rx="4" fill="#dcfce7"/>
+  <text x="1317" y="2323" text-anchor="middle" fill="#14532d" font-size="8">UpdateEjemplarDto</text>
+  <line x1="1245" y1="2216" x2="1245" y2="2220" stroke="#15803d" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <line x1="1245" y1="2264" x2="1245" y2="2268" stroke="#15803d" stroke-width="1.5" marker-end="url(#arr-green)"/>
+
+  <!-- === MÓDULO USUARIOS === -->
+  <rect x="100" y="2398" width="310" height="200" rx="8" fill="#fafaf9" stroke="#d6d3d1" stroke-width="1.5" filter="url(#shadow-sm)"/>
+  <rect x="100" y="2398" width="310" height="30" rx="8" fill="#57534e"/>
+  <rect x="100" y="2413" width="310" height="15" fill="#57534e"/>
+  <text x="255" y="2418" text-anchor="middle" fill="white" font-size="11" font-weight="700">👤 UsuariosModule</text>
+  <rect x="118" y="2437" width="274" height="36" rx="5" fill="#f5f5f4" stroke="#a8a29e" stroke-width="1"/>
+  <text x="255" y="2453" text-anchor="middle" fill="#1c1917" font-size="10" font-weight="700">UsuariosController</text>
+  <text x="255" y="2466" text-anchor="middle" fill="#292524" font-size="8.5">GET / POST / PUT / DELETE /usuarios</text>
+  <rect x="118" y="2479" width="274" height="50" rx="5" fill="#e7e5e4" stroke="#a8a29e" stroke-width="1"/>
+  <text x="255" y="2495" text-anchor="middle" fill="#1c1917" font-size="10" font-weight="700">UsuariosService</text>
+  <text x="255" y="2509" text-anchor="middle" fill="#292524" font-size="8.5">tipo: ESTUDIANTE(3) / DOCENTE(5)</text>
+  <text x="255" y="2521" text-anchor="middle" fill="#292524" font-size="8.5">limitePrestamos configurable</text>
+  <rect x="118" y="2535" width="274" height="28" rx="5" fill="#a8a29e" stroke="#78716c" stroke-width="1"/>
+  <text x="255" y="2549" text-anchor="middle" fill="white" font-size="10" font-weight="700">UsuariosRepository</text>
+  <text x="255" y="2561" text-anchor="middle" fill="white" font-size="8.5">CRUD UsuarioLector · orderBy id</text>
+  <rect x="118" y="2569" width="130" height="20" rx="4" fill="#fafaf9"/>
+  <text x="183" y="2583" text-anchor="middle" fill="#292524" font-size="8">CreateUsuarioDto</text>
+  <rect x="262" y="2569" width="130" height="20" rx="4" fill="#fafaf9"/>
+  <text x="327" y="2583" text-anchor="middle" fill="#292524" font-size="8">UpdateUsuarioDto</text>
+
+  <!-- === MÓDULO PRÉSTAMOS (STAR) === -->
+  <rect x="430" y="2398" width="310" height="280" rx="8" fill="#fefce8" stroke="#fde047" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="430" y="2398" width="310" height="30" rx="8" fill="#a16207"/>
+  <rect x="430" y="2413" width="310" height="15" fill="#a16207"/>
+  <text x="585" y="2418" text-anchor="middle" fill="white" font-size="11" font-weight="700">⭐ PrestamosModule — Lógica Central</text>
+  <rect x="448" y="2437" width="274" height="42" rx="5" fill="#fef9c3" stroke="#fde047" stroke-width="1"/>
+  <text x="585" y="2453" text-anchor="middle" fill="#713f12" font-size="10" font-weight="700">PrestamosController</text>
+  <text x="585" y="2464" text-anchor="middle" fill="#854d0e" font-size="8.5">GET / POST / PUT / DELETE /prestamos</text>
+  <text x="585" y="2476" text-anchor="middle" fill="#854d0e" font-size="8.5">PATCH /prestamos/:id/devolver ⚡</text>
+  <rect x="448" y="2485" width="274" height="120" rx="5" fill="#fef08a" stroke="#fde047" stroke-width="1"/>
+  <text x="585" y="2501" text-anchor="middle" fill="#713f12" font-size="10" font-weight="700">PrestamosService — Lógica de Negocio</text>
+  <text x="585" y="2516" text-anchor="middle" fill="#854d0e" font-size="8.5">✅ Valida límite de préstamos activos</text>
+  <text x="585" y="2530" text-anchor="middle" fill="#854d0e" font-size="8.5">✅ Verifica ejemplar DISPONIBLE</text>
+  <text x="585" y="2544" text-anchor="middle" fill="#854d0e" font-size="8.5">✅ Bloquea si hay multas pendientes</text>
+  <text x="585" y="2558" text-anchor="middle" fill="#854d0e" font-size="8.5">✅ $transaction: Prestamo + Ejemplar</text>
+  <text x="585" y="2572" text-anchor="middle" fill="#854d0e" font-size="8.5">✅ devolver(): calcula mora ($500/día)</text>
+  <text x="585" y="2586" text-anchor="middle" fill="#854d0e" font-size="8.5">✅ Genera Multa automáticamente</text>
+  <text x="585" y="2600" text-anchor="middle" fill="#854d0e" font-size="8.5">✅ Libera ejemplar al devolver</text>
+  <rect x="448" y="2611" width="274" height="28" rx="5" fill="#fde047" stroke="#ca8a04" stroke-width="1"/>
+  <text x="585" y="2627" text-anchor="middle" fill="#713f12" font-size="10" font-weight="700">PrestamosRepository</text>
+  <text x="585" y="2639" text-anchor="middle" fill="#713f12" font-size="8.5">findAll · findOne · create · update</text>
+  <rect x="448" y="2645" width="130" height="20" rx="4" fill="#fefce8"/>
+  <text x="513" y="2659" text-anchor="middle" fill="#713f12" font-size="8">CreatePrestamoDto</text>
+  <rect x="592" y="2645" width="130" height="20" rx="4" fill="#fefce8"/>
+  <text x="657" y="2659" text-anchor="middle" fill="#713f12" font-size="8">UpdatePrestamoDto</text>
+
+  <!-- === MÓDULO MULTAS === -->
+  <rect x="760" y="2398" width="310" height="220" rx="8" fill="#fff1f2" stroke="#fecdd3" stroke-width="1.5" filter="url(#shadow-sm)"/>
+  <rect x="760" y="2398" width="310" height="30" rx="8" fill="#be123c"/>
+  <rect x="760" y="2413" width="310" height="15" fill="#be123c"/>
+  <text x="915" y="2418" text-anchor="middle" fill="white" font-size="11" font-weight="700">⚠️ MultasModule</text>
+  <rect x="778" y="2437" width="274" height="42" rx="5" fill="#ffe4e6" stroke="#fda4af" stroke-width="1"/>
+  <text x="915" y="2453" text-anchor="middle" fill="#881337" font-size="10" font-weight="700">MultasController</text>
+  <text x="915" y="2464" text-anchor="middle" fill="#9f1239" font-size="8.5">GET / POST / PUT / DELETE /multas</text>
+  <text x="915" y="2476" text-anchor="middle" fill="#9f1239" font-size="8.5">PATCH /multas/:id/pagar ⚡</text>
+  <rect x="778" y="2485" width="274" height="72" rx="5" fill="#fecdd3" stroke="#fda4af" stroke-width="1"/>
+  <text x="915" y="2501" text-anchor="middle" fill="#881337" font-size="10" font-weight="700">MultasService</text>
+  <text x="915" y="2515" text-anchor="middle" fill="#9f1239" font-size="8.5">pagar(): cambia estado → 'pagada'</text>
+  <text x="915" y="2529" text-anchor="middle" fill="#9f1239" font-size="8.5">Generada automáticamente al devolver</text>
+  <text x="915" y="2543" text-anchor="middle" fill="#9f1239" font-size="8.5">Include profundo: usuario + libro</text>
+  <text x="915" y="2557" text-anchor="middle" fill="#9f1239" font-size="8.5">valor = diasRetraso × $500</text>
+  <rect x="778" y="2563" width="274" height="28" rx="5" fill="#fda4af" stroke="#fb7185" stroke-width="1"/>
+  <text x="915" y="2579" text-anchor="middle" fill="#881337" font-size="10" font-weight="700">MultasRepository</text>
+  <text x="915" y="2591" text-anchor="middle" fill="#881337" font-size="8.5">findByPrestamo · CRUD con include</text>
+  <rect x="778" y="2597" width="130" height="20" rx="4" fill="#fff1f2"/>
+  <text x="843" y="2611" text-anchor="middle" fill="#881337" font-size="8">CreateMultaDto</text>
+  <rect x="922" y="2597" width="130" height="20" rx="4" fill="#fff1f2"/>
+  <text x="987" y="2611" text-anchor="middle" fill="#881337" font-size="8">UpdateMultaDto</text>
+
+  <!-- === MÓDULO RESERVAS === -->
+  <rect x="1090" y="2398" width="310" height="240" rx="8" fill="#f0f9ff" stroke="#bae6fd" stroke-width="1.5" filter="url(#shadow-sm)"/>
+  <rect x="1090" y="2398" width="310" height="30" rx="8" fill="#0369a1"/>
+  <rect x="1090" y="2413" width="310" height="15" fill="#0369a1"/>
+  <text x="1245" y="2418" text-anchor="middle" fill="white" font-size="11" font-weight="700">🔖 ReservasModule</text>
+  <rect x="1108" y="2437" width="274" height="42" rx="5" fill="#e0f2fe" stroke="#7dd3fc" stroke-width="1"/>
+  <text x="1245" y="2453" text-anchor="middle" fill="#0c4a6e" font-size="10" font-weight="700">ReservasController</text>
+  <text x="1245" y="2464" text-anchor="middle" fill="#075985" font-size="8.5">GET / POST / PUT / DELETE /reservas</text>
+  <text x="1245" y="2476" text-anchor="middle" fill="#075985" font-size="8.5">PATCH /reservas/:id/cancelar ⚡</text>
+  <rect x="1108" y="2485" width="274" height="72" rx="5" fill="#bae6fd" stroke="#7dd3fc" stroke-width="1"/>
+  <text x="1245" y="2501" text-anchor="middle" fill="#0c4a6e" font-size="10" font-weight="700">ReservasService</text>
+  <text x="1245" y="2515" text-anchor="middle" fill="#075985" font-size="8.5">Valida usuario y libro existentes</text>
+  <text x="1245" y="2529" text-anchor="middle" fill="#075985" font-size="8.5">Evita duplicados por usuario+libro</text>
+  <text x="1245" y="2543" text-anchor="middle" fill="#075985" font-size="8.5">cancelar(): estado → 'cancelada'</text>
+  <text x="1245" y="2557" text-anchor="middle" fill="#075985" font-size="8.5">Verifica estado antes de cancelar</text>
+  <rect x="1108" y="2563" width="274" height="28" rx="5" fill="#7dd3fc" stroke="#38bdf8" stroke-width="1"/>
+  <text x="1245" y="2579" text-anchor="middle" fill="#0c4a6e" font-size="10" font-weight="700">ReservasRepository</text>
+  <text x="1245" y="2591" text-anchor="middle" fill="#0c4a6e" font-size="8.5">CRUD · include: usuario, libro</text>
+  <rect x="1108" y="2597" width="130" height="20" rx="4" fill="#f0f9ff"/>
+  <text x="1173" y="2611" text-anchor="middle" fill="#0c4a6e" font-size="8">CreateReservaDto</text>
+  <rect x="1252" y="2597" width="130" height="20" rx="4" fill="#f0f9ff"/>
+  <text x="1317" y="2611" text-anchor="middle" fill="#0c4a6e" font-size="8">UpdateReservaDto</text>
+
+  <!-- Prisma connects down from all modules -->
+  <rect x="490" y="2690" width="620" height="42" rx="8" fill="#1e1b4b" filter="url(#shadow-sm)"/>
+  <text x="800" y="2707" text-anchor="middle" fill="#a5b4fc" font-size="10" font-weight="700">PrismaService (Global) — Capa de Acceso a Datos</text>
+  <text x="800" y="2722" text-anchor="middle" fill="#818cf8" font-size="9">Todos los repositorios inyectan PrismaService · $transaction · Modelos tipados</text>
+
+  <line x1="255" y1="2595" x2="500" y2="2690" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-purple)"/>
+  <line x1="585" y1="2678" x2="585" y2="2690" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-purple)"/>
+  <line x1="915" y1="2620" x2="800" y2="2690" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-purple)"/>
+  <line x1="1245" y1="2640" x2="1100" y2="2690" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-purple)"/>
+
+
+<!-- Footer -->
+<rect x="0" y="3010" width="1600" height="28" fill="#0f172a"/>
+<text x="800" y="3028" text-anchor="middle" font-size="10" fill="#64748b">C4 Model · Sistema de Gestión de Biblioteca Digital · NestJS + Next.js + PostgreSQL + Prisma + Docker</text>
+</svg>
